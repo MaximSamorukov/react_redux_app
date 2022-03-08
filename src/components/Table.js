@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Table } from "antd";
 import './styles/header.css';
 import { EditOutlined, CloseCircleOutlined } from '@ant-design/icons';
-import AddItemModal from "./AddItem";
+import EditItemModal from "./EditItem";
 import { deleteItem } from "../actions";
 import { columns } from "./tableColumns";
 
@@ -19,10 +19,10 @@ const EditSell = ({ item }) => {
         justifyContent: 'space-evenly',
         width: 70
       }}>
-        <EditOutlined onClick={() => console.log(item)} style={style} />
+        <EditOutlined onClick={() => setVisible(true)} style={style} />
         <CloseCircleOutlined onClick={() => deleteItem(item.id)} style={{ ...style, color: 'red' }} />
       </div>
-      <AddItemModal visible={visible}/>
+      <EditItemModal visible={visible} fields={item} onCancel={() => setVisible(false)} />
     </>
   )
 }
@@ -31,7 +31,7 @@ const dataTable = store => store
   .map((item) => ({ ...item, edit: <EditSell item={item} /> }));
 
 const TableComponent = ({ items }) => {
-
+  console.log(items);
   return (
     <div className="table">
       <Table dataSource={dataTable(items)} columns={columns} />

@@ -26,6 +26,17 @@ const reducer = (state = dataSource, action) => {
       const { id } = action.payload;
       const filteredState = state.filter((i) => i.id !== id);
       return filteredState;
+    case 'EDIT_ITEM':
+      const { id: itemId, name, age, address } = action.payload.item;
+      const newState = state.map((i) => {
+        if (i.id === itemId) {
+          return {
+            id: itemId, name, age, address
+          };
+        };
+        return i;
+      })
+      return newState;
     default:
       return state;
   }

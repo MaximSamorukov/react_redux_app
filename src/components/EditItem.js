@@ -1,28 +1,20 @@
 import React, { useState } from "react";
 import { Modal, Input } from "antd";
-import { addItem } from "../actions";
+import { editItem } from "../actions";
 
-const emptyObject = {
-  name: '',
-  age: '',
-  address: '',
-}
-
-const AddItemModal = ({ visible, onCancel }) => {
-  const [ items, setItems ] = useState(emptyObject);
+const EditItemModal = ({ visible, fields, onCancel }) => {
+  const [ items, setItems ] = useState(fields)
 
   const updateDate = (field) => (e) => {
     setItems((info) => ({ ...info, [field]: e.target.value }) );
   }
-
   return (
     <Modal
       visible={visible}
       onCancel={onCancel}
-      title="Add Item"
+      title="Edit Item"
       onOk={() => {
-        addItem(items);
-        setItems(emptyObject);
+        editItem(items);
         onCancel();
       }}
     >
@@ -54,4 +46,4 @@ const AddItemModal = ({ visible, onCancel }) => {
   )
 }
 
-export default AddItemModal;
+export default EditItemModal;
