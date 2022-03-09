@@ -31,7 +31,6 @@ const dataTable = store => store
   .map((item) => ({ ...item, edit: <EditSell item={item} /> }));
 
 const TableComponent = ({ items }) => {
-  console.log(items);
   return (
     <div className="table">
       <Table dataSource={dataTable(items)} columns={columns} />

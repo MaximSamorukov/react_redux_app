@@ -30,8 +30,13 @@ const editItem = (item) => store.dispatch({
   }
 })
 
+const restore = () => store.dispatch({
+  type: 'RESTORE'
+})
+
 export {
   addItem,
   deleteItem,
-  editItem
+  editItem,
+  restore
 }

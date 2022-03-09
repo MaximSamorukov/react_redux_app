@@ -22,6 +22,8 @@ const reducer = (state = dataSource, action) => {
     case 'ADD_ITEM':
       const { item } = action.payload;
       return [...state, item];
+    case 'RESTORE':
+      return dataSource;
     case 'DELETE_ITEM':
       const { id } = action.payload;
       const filteredState = state.filter((i) => i.id !== id);
